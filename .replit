@@ -1,7 +1,71 @@
-run = "make && ./discord_music_bot"
+compile = ["make", "-s"]
+run = "./discord_music_bot"
+entrypoint = "src/main.c"
+hidden = ["discord_music_bot", "discord_music_bot-debug", "**/*.o", "**/*.d", ".ccls-cache", "Makefile"]
 
 [nix]
-channel = "stable-23_05"
+channel = "stable-24_05"
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix", ".ccls-cache"]
+
+[debugger]
+support = true
+
+[debugger.compile]
+command = ["make", "discord_music_bot-debug"]
+noFileArgs = true
+
+[debugger.interactive]
+transport = "stdio"
+startCommand = ["dap-cpp"]
+
+[debugger.interactive.initializeMessage]
+command = "initialize"
+type = "request"
+
+[debugger.interactive.initializeMessage.arguments]
+adapterID = "cppdbg"
+clientID = "replit"
+clientName = "replit.com"
+columnsStartAt1 = true
+linesStartAt1 = true
+locale = "en-us"
+pathFormat = "path"
+supportsInvalidatedEvent = true
+supportsProgressReporting = true
+supportsRunInTerminalRequest = true
+supportsVariablePaging = true
+supportsVariableType = true
+
+[debugger.interactive.launchMessage]
+command = "launch"
+type = "request"
+
+[debugger.interactive.launchMessage.arguments]
+MIMode = "gdb"
+arg = []
+cwd = "."
+environment = []
+externalConsole = false
+logging = {}
+miDebuggerPath = "gdb"
+name = "g++ - Build and debug active file"
+program = "./discord_music_bot-debug"
+request = "launch"
+setupCommands = [
+    { description = "Enable pretty-printing for gdb", ignoreFailures = true, text = "-enable-pretty-printing" }
+]
+stopAtEntry = false
+type = "cppdbg"
+
+[languages]
+
+[languages.c]
+pattern = "**/*.{c,h}"
+
+[languages.c.languageServer]
+start = "ccls"
 
 [env]
 PATH = "/home/runner/$REPL_SLUG/.config/nix/profile/bin:$PATH"

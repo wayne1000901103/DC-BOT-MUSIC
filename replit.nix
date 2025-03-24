@@ -7,5 +7,8 @@
         pkgs.json-c
         pkgs.fftw
         pkgs.websockets
+        pkgs.gdb
+        pkgs.ccls
+        pkgs.pkg-config
     ];
 } 
