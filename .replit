@@ -1,0 +1,12 @@
+run = "make && ./discord_music_bot"
+
+[nix]
+channel = "stable-23_05"
+
+[env]
+PATH = "/home/runner/$REPL_SLUG/.config/nix/profile/bin:$PATH"
+CC = "gcc"
+CFLAGS = "-Wall -Wextra -O2"
+
+[packages]
+nixpkgs = "22.11" 
