@@ -1,14 +1,8 @@
 { pkgs }: {
     deps = [
-        pkgs.gcc
-        pkgs.make
-        pkgs.glibc
-        pkgs.curl
-        pkgs.json-c
-        pkgs.fftw
-        pkgs.websockets
-        pkgs.gdb
-        pkgs.ccls
-        pkgs.pkg-config
+        pkgs.nodejs-18_x
+        pkgs.nodePackages.typescript-language-server
+        pkgs.yarn
+        pkgs.replitPackages.jest
     ];
 } 
